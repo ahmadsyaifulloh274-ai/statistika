@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analisis Naive Bayes - Studi Kasus 2</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="background-elements">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+    </div>
+    
+    <div class="container">
+        <header>
+            <h1>Analisis <span>Naive Bayes</span></h1>
+            <p>Prediksi Pembelian Produk Berdasarkan Usia, Penghasilan, dan Status</p>
+        </header>
+
+        <section class="card data-section">
+            <h2>Data Uji</h2>
+            <div class="test-data-box">
+                <div class="data-badge"><strong>Usia:</strong> {{ hasil.data_uji.Usia }}</div>
+                <div class="data-badge"><strong>Penghasilan:</strong> {{ hasil.data_uji.Penghasilan }}</div>
+                <div class="data-badge"><strong>Status:</strong> {{ hasil.data_uji.Status }}</div>
+            </div>
+        </section>
+
+        <section class="card process-section">
+            <h2>1. Probabilitas Prior</h2>
+            <p>Menghitung peluang masing-masing kelas secara umum dari total {{ hasil.prior.total }} data training.</p>
+            <div class="formula-box">
+                <p>P(Membeli = Ya) = {{ hasil.prior.jml_ya }} / {{ hasil.prior.total }} = <strong>{{ "%.2f"|format(hasil.prior.ya) }}</strong></p>
+                <p>P(Membeli = Tidak) = {{ hasil.prior.jml_tidak }} / {{ hasil.prior.total }} = <strong>{{ "%.2f"|format(hasil.prior.tidak) }}</strong></p>
+            </div>
+        </section>
+
+        <section class="card process-section">
+            <h2>2. Likelihood</h2>
+            <p>Menghitung probabilitas setiap atribut berdasarkan kelasnya.</p>
+            
+            <div class="grid-2">
+                <div class="likelihood-card ya-card">
+                    <h3>Kelas: Ya (n = {{ hasil.prior.jml_ya }})</h3>
+                    <ul>
+                        <li>P(Usia={{ hasil.data_uji.Usia }} | Ya) = {{ hasil.likelihood.ya.usia_count }} / {{ hasil.prior.jml_ya }} = <strong>{{ "%.3f"|format(hasil.likelihood.ya.usia) }}</strong></li>
+                        <li>P(Penghasilan={{ hasil.data_uji.Penghasilan }} | Ya) = {{ hasil.likelihood.ya.penghasilan_count }} / {{ hasil.prior.jml_ya }} = <strong>{{ "%.3f"|format(hasil.likelihood.ya.penghasilan) }}</strong></li>
+                        <li>P(Status={{ hasil.data_uji.Status }} | Ya) = {{ hasil.likelihood.ya.status_count }} / {{ hasil.prior.jml_ya }} = <strong>{{ "%.3f"|format(hasil.likelihood.ya.status) }}</strong></li>
+                    </ul>
+                </div>
+                
+                <div class="likelihood-card tidak-card">
+                    <h3>Kelas: Tidak (n = {{ hasil.prior.jml_tidak }})</h3>
+                    <ul>
+                        <li>P(Usia={{ hasil.data_uji.Usia }} | Tidak) = {{ hasil.likelihood.tidak.usia_count }} / {{ hasil.prior.jml_tidak }} = <strong>{{ "%.3f"|format(hasil.likelihood.tidak.usia) }}</strong></li>
+                        <li>P(Penghasilan={{ hasil.data_uji.Penghasilan }} | Tidak) = {{ hasil.likelihood.tidak.penghasilan_count }} / {{ hasil.prior.jml_tidak }} = <strong>{{ "%.3f"|format(hasil.likelihood.tidak.penghasilan) }}</strong></li>
+                        <li>P(Status={{ hasil.data_uji.Status }} | Tidak) = {{ hasil.likelihood.tidak.status_count }} / {{ hasil.prior.jml_tidak }} = <strong>{{ "%.3f"|format(hasil.likelihood.tidak.status) }}</strong></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="card process-section">
+            <h2>3. Posterior Probability</h2>
+            <p>Mengalikan Prior dengan semua nilai Likelihood untuk masing-masing kelas (tanpa normalisasi pembagi).</p>
+            <div class="formula-box posterior">
+                <p><strong>P(Ya | X)</strong> ∝ P(Ya) × P(Usia|Ya) × P(Penghasilan|Ya) × P(Status|Ya)</p>
+                <p>= {{ "%.2f"|format(hasil.prior.ya) }} × {{ "%.3f"|format(hasil.likelihood.ya.usia) }} × {{ "%.3f"|format(hasil.likelihood.ya.penghasilan) }} × {{ "%.3f"|format(hasil.likelihood.ya.status) }}</p>
+                <p>= <strong>{{ "%.5f"|format(hasil.posterior.ya) }}</strong></p>
+            </div>
+            
+            <div class="formula-box posterior mt-3">
+                <p><strong>P(Tidak | X)</strong> ∝ P(Tidak) × P(Usia|Tidak) × P(Penghasilan|Tidak) × P(Status|Tidak)</p>
+                <p>= {{ "%.2f"|format(hasil.prior.tidak) }} × {{ "%.3f"|format(hasil.likelihood.tidak.usia) }} × {{ "%.3f"|format(hasil.likelihood.tidak.penghasilan) }} × {{ "%.3f"|format(hasil.likelihood.tidak.status) }}</p>
+                <p>= <strong>{{ "%.5f"|format(hasil.posterior.tidak) }}</strong></p>
+            </div>
+        </section>
+
+        <section class="card result-section">
+            <h2>4. Kesimpulan Akhir</h2>
+            <div class="final-result {{ 'result-ya' if hasil.prediksi == 'Ya' else 'result-tidak' }}">
+                <h3>Prediksi: Membeli = <span>{{ hasil.prediksi }}</span></h3>
+                <p>Karena nilai posterior probabilitas untuk prediksi <strong>{{ hasil.prediksi }}</strong> ({{ "%.5f"|format(hasil.posterior.ya if hasil.prediksi == 'Ya' else hasil.posterior.tidak) }}) lebih besar dari nilai probabilitas lawan ({{ "%.5f"|format(hasil.posterior.tidak if hasil.prediksi == 'Ya' else hasil.posterior.ya) }}), maka pelanggan dengan profil tersebut diprediksi akan <strong>{{ 'membeli' if hasil.prediksi == 'Ya' else 'tidak membeli' }}</strong> produk.</p>
+            </div>
+        </section>
+        
+        <section class="card dataset-section">
+            <h2>Tabel Dataset Training (20 Baris)</h2>
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Usia</th>
+                            <th>Penghasilan</th>
+                            <th>Status</th>
+                            <th>Membeli</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for row in dataset %}
+                        <tr>
+                            <td>{{ row.No }}</td>
+                            <td>{{ row.Usia }}</td>
+                            <td>{{ row.Penghasilan }}</td>
+                            <td>{{ row.Status }}</td>
+                            <td>
+                                <span class="badge {{ 'badge-ya' if row.Membeli == 'Ya' else 'badge-tidak' }}">
+                                    {{ row.Membeli }}
+                                </span>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </section>
+        
+        <footer>
+            <p>Dibuat dengan Python & Flask - Analisis Naive Bayes</p>
+        </footer>
+    </div>
+</body>
+</html>
