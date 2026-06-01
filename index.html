@@ -769,13 +769,21 @@
                 return dataset.filter(d => d[attr] === val && d.Membeli === label).length;
             }
 
-            const lkUsiaYa = countL("Usia", usia, "Ya") / jmlYa;
-            const lkPengYa = countL("Penghasilan", penghasilan, "Ya") / jmlYa;
-            const lkStatYa = countL("Status", status, "Ya") / jmlYa;
+            const cntUsiaYa = countL("Usia", usia, "Ya");
+            const cntPengYa = countL("Penghasilan", penghasilan, "Ya");
+            const cntStatYa = countL("Status", status, "Ya");
+            
+            const lkUsiaYa = cntUsiaYa / jmlYa;
+            const lkPengYa = cntPengYa / jmlYa;
+            const lkStatYa = cntStatYa / jmlYa;
 
-            const lkUsiaTdk = countL("Usia", usia, "Tidak") / jmlTidak;
-            const lkPengTdk = countL("Penghasilan", penghasilan, "Tidak") / jmlTidak;
-            const lkStatTdk = countL("Status", status, "Tidak") / jmlTidak;
+            const cntUsiaTdk = countL("Usia", usia, "Tidak");
+            const cntPengTdk = countL("Penghasilan", penghasilan, "Tidak");
+            const cntStatTdk = countL("Status", status, "Tidak");
+
+            const lkUsiaTdk = cntUsiaTdk / jmlTidak;
+            const lkPengTdk = cntPengTdk / jmlTidak;
+            const lkStatTdk = cntStatTdk / jmlTidak;
 
             const posteriorYa = priorYa * lkUsiaYa * lkPengYa * lkStatYa;
             const posteriorTidak = priorTidak * lkUsiaTdk * lkPengTdk * lkStatTdk;
