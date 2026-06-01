@@ -434,11 +434,25 @@
         }
 
         .result-text {
-            font-size: 3.5rem;
-            /* SUPER BESAR */
+            font-size: 3.5rem; /* SUPER BESAR */
             font-weight: 800;
             margin: 0;
             line-height: 1.1;
+        }
+
+        /* Console Output untuk Kesinambungan Rumus */
+        .console {
+            background: rgba(10, 5, 20, 0.8);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            border-radius: 12px;
+            padding: 20px;
+            font-family: 'Consolas', monospace;
+            font-size: 1.05rem;
+            color: #a78bfa;
+            box-shadow: inset 0 2px 15px rgba(0,0,0,0.5);
+            margin-bottom: 25px;
+            white-space: pre-wrap;
+            line-height: 1.5;
         }
 
         /* ================= Header Navbar & Footer ================= */
@@ -603,6 +617,12 @@
 
                 <h2 style="margin-top: 40px; font-size: 1.6rem;">🔬 Analisis Probabilitas</h2>
 
+                <!-- Teks Konsol Rincian Perhitungan -->
+                <div class="stat-group">
+                    <div class="stat-title">Rincian Perhitungan Naive Bayes</div>
+                    <div class="console" id="consoleOutput">Menghitung...</div>
+                </div>
+
                 <!-- Prior Bar -->
                 <div class="stat-group">
                     <div class="stat-title">1. Prior Probability P(C)</div>
@@ -759,6 +779,28 @@
 
             const posteriorYa = priorYa * lkUsiaYa * lkPengYa * lkStatYa;
             const posteriorTidak = priorTidak * lkUsiaTdk * lkPengTdk * lkStatTdk;
+
+            // Output Konsol Teks (Kesinambungan dengan PyQt5)
+            const textOutput = `=== 1. PROBABILITAS PRIOR ===
+P(Membeli = Ya)    = ${jmlYa}/${totalData} = ${priorYa.toFixed(2)}
+P(Membeli = Tidak) = ${jmlTidak}/${totalData} = ${priorTidak.toFixed(2)}
+
+=== 2. LIKELIHOOD ===
+[Kelas: Ya]
+P(Usia=${usia} | Ya)        = ${cntUsiaYa}/${jmlYa} = ${lkUsiaYa.toFixed(3)}
+P(Penghasilan=${penghasilan} | Ya) = ${cntPengYa}/${jmlYa} = ${lkPengYa.toFixed(3)}
+P(Status=${status} | Ya)      = ${cntStatYa}/${jmlYa} = ${lkStatYa.toFixed(3)}
+
+[Kelas: Tidak]
+P(Usia=${usia} | Tidak)        = ${cntUsiaTdk}/${jmlTidak} = ${lkUsiaTdk.toFixed(3)}
+P(Penghasilan=${penghasilan} | Tidak) = ${cntPengTdk}/${jmlTidak} = ${lkPengTdk.toFixed(3)}
+P(Status=${status} | Tidak)      = ${cntStatTdk}/${jmlTidak} = ${lkStatTdk.toFixed(3)}
+
+=== 3. POSTERIOR PROBABILITY ===
+P(Ya | X)    ∝ ${priorYa.toFixed(2)} * ${lkUsiaYa.toFixed(3)} * ${lkPengYa.toFixed(3)} * ${lkStatYa.toFixed(3)} = ${posteriorYa.toFixed(5)}
+P(Tidak | X) ∝ ${priorTidak.toFixed(2)} * ${lkUsiaTdk.toFixed(3)} * ${lkPengTdk.toFixed(3)} * ${lkStatTdk.toFixed(3)} = ${posteriorTidak.toFixed(5)}`;
+
+            document.getElementById("consoleOutput").innerText = textOutput;
 
             // Update UI: Prior
             document.getElementById("txt-prior-ya").innerText = `${jmlYa}/${totalData} = ${(priorYa * 100).toFixed(0)}%`;
