@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
@@ -78,9 +78,18 @@ def calculate_naive_bayes(data_uji):
         "data_uji": data_uji
     }
 
-@app.route('/')
+@app.route('/', methods=['GET', 'POST'])
 def index():
-    data_uji = {"Usia": "ParuhBaya", "Penghasilan": "Rendah", "Status": "Menikah"}
+    if request.method == 'POST':
+        data_uji = {
+            "Usia": request.form.get("usia"),
+            "Penghasilan": request.form.get("penghasilan"),
+            "Status": request.form.get("status")
+        }
+    else:
+        # Default data_uji
+        data_uji = {"Usia": "ParuhBaya", "Penghasilan": "Rendah", "Status": "Menikah"}
+        
     hasil = calculate_naive_bayes(data_uji)
     return render_template('index.html', dataset=dataset, hasil=hasil)
 

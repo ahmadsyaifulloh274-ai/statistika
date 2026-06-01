@@ -19,8 +19,40 @@
             <p>Prediksi Pembelian Produk Berdasarkan Usia, Penghasilan, dan Status</p>
         </header>
 
+        <section class="card form-section">
+            <h2>Uji Prediksi Baru</h2>
+            <form action="/" method="POST" class="prediction-form">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="usia">Usia</label>
+                        <select name="usia" id="usia" class="form-control" required>
+                            <option value="Muda" {% if hasil.data_uji.Usia == 'Muda' %}selected{% endif %}>Muda</option>
+                            <option value="ParuhBaya" {% if hasil.data_uji.Usia == 'ParuhBaya' %}selected{% endif %}>Paruh Baya</option>
+                            <option value="Tua" {% if hasil.data_uji.Usia == 'Tua' %}selected{% endif %}>Tua</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="penghasilan">Penghasilan</label>
+                        <select name="penghasilan" id="penghasilan" class="form-control" required>
+                            <option value="Rendah" {% if hasil.data_uji.Penghasilan == 'Rendah' %}selected{% endif %}>Rendah</option>
+                            <option value="Sedang" {% if hasil.data_uji.Penghasilan == 'Sedang' %}selected{% endif %}>Sedang</option>
+                            <option value="Tinggi" {% if hasil.data_uji.Penghasilan == 'Tinggi' %}selected{% endif %}>Tinggi</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="status">Status</label>
+                        <select name="status" id="status" class="form-control" required>
+                            <option value="Single" {% if hasil.data_uji.Status == 'Single' %}selected{% endif %}>Single</option>
+                            <option value="Menikah" {% if hasil.data_uji.Status == 'Menikah' %}selected{% endif %}>Menikah</option>
+                        </select>
+                    </div>
+                </div>
+                <button type="submit" class="btn-primary">Prediksi Sekarang</button>
+            </form>
+        </section>
+
         <section class="card data-section">
-            <h2>Data Uji</h2>
+            <h2>Data Uji yang Diproses</h2>
             <div class="test-data-box">
                 <div class="data-badge"><strong>Usia:</strong> {{ hasil.data_uji.Usia }}</div>
                 <div class="data-badge"><strong>Penghasilan:</strong> {{ hasil.data_uji.Penghasilan }}</div>
