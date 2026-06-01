@@ -373,6 +373,62 @@
             line-height: 1.1;
         }
 
+        /* ================= Header Navbar & Footer ================= */
+        .navbar {
+            width: 100%;
+            background: rgba(10, 5, 20, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--glass-border);
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-sizing: border-box;
+        }
+
+        .navbar-brand {
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: -webkit-linear-gradient(45deg, #a855f7, #3b82f6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 1px;
+        }
+
+        .navbar-menu {
+            color: #cbd5e1;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .footer {
+            width: 100%;
+            background: rgba(10, 5, 20, 0.7);
+            backdrop-filter: blur(15px);
+            border-top: 1px solid var(--glass-border);
+            padding: 30px;
+            text-align: center;
+            color: var(--text-muted);
+            margin-top: auto; /* Mendorong footer selalu ke paling bawah layar */
+            font-size: 1.1rem;
+            box-sizing: border-box;
+        }
+
+        .footer p {
+            margin: 5px 0;
+        }
+
+        .footer span {
+            background: -webkit-linear-gradient(45deg, #a855f7, #ec4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 800;
+        }
+
         /* Scrollbar styling */
         ::-webkit-scrollbar { width: 10px; }
         ::-webkit-scrollbar-track { background: rgba(0,0,0,0.2); border-radius: 5px; }
@@ -382,6 +438,12 @@
     </style>
 </head>
 <body>
+
+    <!-- Header / Navbar Top -->
+    <nav class="navbar">
+        <div class="navbar-brand">TIF-2025A</div>
+        <div class="navbar-menu">Project Statistika UNESA</div>
+    </nav>
 
     <!-- Dekorasi Background -->
     <div class="orb-1"></div>
@@ -509,6 +571,12 @@
             </div>
         </div>
     </div>
+
+    <!-- Footer Bottom -->
+    <footer class="footer">
+        <p>Project Mata Kuliah <span>Statistika</span> &copy; 2026</p>
+        <p>S1 Teknik Informatika - 2025A - Fakultas Teknik - Universitas Negeri Surabaya</p>
+    </footer>
 
     <script>
         // Data Latih (20 Baris)
