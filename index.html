@@ -3,18 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prediksi Naive Bayes Premium</title>
+    <title>Prediksi Naive Bayes Ultra-Premium</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Consolas&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-dark: #0a0514;
-            --glass-bg: rgba(30, 25, 45, 0.4);
-            --glass-border: rgba(255, 255, 255, 0.05);
             --primary-glow: #a855f7;
             --secondary-glow: #ec4899;
-            --text-light: #f8fafc;
+            --tertiary-glow: #3b82f6;
+            --glass-bg: rgba(20, 15, 35, 0.55);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --text-light: #ffffff;
             --text-muted: #94a3b8;
         }
 
@@ -22,107 +22,173 @@
             margin: 0;
             padding: 0;
             font-family: 'Outfit', sans-serif;
-            background: var(--bg-dark);
-            background-image: 
-                radial-gradient(circle at 15% 50%, rgba(20, 10, 40, 1), transparent 50%),
-                radial-gradient(circle at 85% 30%, rgba(30, 5, 20, 1), transparent 50%);
             color: var(--text-light);
             min-height: 100vh;
+            /* Animated Mesh Gradient Background */
+            background: linear-gradient(-45deg, #0f0c29, #302b63, #24243e, #0f0c29);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
             display: flex;
             flex-direction: column;
             align-items: center;
         }
 
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Dekorasi Bola Cahaya (Orbs) di Latar Belakang */
+        .orb-1, .orb-2 {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(100px);
+            z-index: -1;
+        }
+        .orb-1 {
+            width: 400px; height: 400px;
+            background: rgba(168, 85, 247, 0.4);
+            top: -100px; left: -100px;
+            animation: floatOrb 10s ease-in-out infinite alternate;
+        }
+        .orb-2 {
+            width: 500px; height: 500px;
+            background: rgba(236, 72, 153, 0.3);
+            bottom: -200px; right: -100px;
+            animation: floatOrb 12s ease-in-out infinite alternate-reverse;
+        }
+
+        @keyframes floatOrb {
+            0% { transform: translateY(0) scale(1); }
+            100% { transform: translateY(50px) scale(1.1); }
+        }
+
+        /* ================= Typography & Layout ================= */
         .header {
             text-align: center;
-            margin-top: 40px;
-            margin-bottom: 30px;
+            margin: 60px 0 40px 0;
         }
 
         h1 {
             font-weight: 800;
-            font-size: 3rem;
+            font-size: 4rem; /* Diperbesar */
             margin: 0;
-            background: -webkit-linear-gradient(45deg, var(--primary-glow), var(--secondary-glow));
+            background: -webkit-linear-gradient(45deg, #ffffff, #a855f7, #ec4899);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            text-shadow: 0px 4px 15px rgba(168, 85, 247, 0.4);
+            filter: drop-shadow(0px 4px 15px rgba(168, 85, 247, 0.4));
+            letter-spacing: -1px;
         }
 
         .subtitle {
             color: var(--text-muted);
-            font-size: 1.2rem;
-            margin-top: 5px;
+            font-size: 1.5rem; /* Diperbesar */
+            margin-top: 10px;
+            font-weight: 300;
         }
 
         .container {
             display: flex;
             flex-wrap: wrap;
-            width: 90%;
-            max-width: 1200px;
-            gap: 30px;
-            margin-bottom: 50px;
+            width: 95%;
+            max-width: 1500px; /* Lebar maksimal diperbesar */
+            gap: 40px;
+            margin-bottom: 80px;
         }
 
+        /* Glassmorphism Panel */
         .panel {
             background: var(--glass-bg);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border-radius: 20px;
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border-radius: 25px;
             border: 1px solid var(--glass-border);
-            padding: 30px;
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255,255,255,0.1);
             flex: 1;
-            min-width: 400px;
+            min-width: 500px; /* Panel lebih lebar */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .panel:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255,255,255,0.15);
         }
 
         h2 {
-            font-size: 1.5rem;
+            font-size: 2rem; /* Diperbesar */
             margin-top: 0;
-            margin-bottom: 20px;
-            border-bottom: 1px solid var(--glass-border);
-            padding-bottom: 10px;
-            color: #e2e8f0;
+            margin-bottom: 25px;
+            color: #ffffff;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 15px;
         }
 
-        /* Table Styles */
+        /* ================= Tabel Modern ================= */
         .table-wrapper {
-            max-height: 600px;
+            max-height: 650px;
             overflow-y: auto;
-            border-radius: 10px;
+            border-radius: 15px;
             border: 1px solid var(--glass-border);
+            background: rgba(0,0,0,0.2);
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
-            text-align: left;
+            font-size: 1.15rem; /* Tabel diperbesar */
         }
 
         th {
-            background: rgba(168, 85, 247, 0.15);
-            color: #cbd5e1;
-            padding: 15px;
+            background: rgba(255,255,255,0.05);
+            color: #e2e8f0;
+            padding: 20px;
             font-weight: 600;
             position: sticky;
             top: 0;
             backdrop-filter: blur(10px);
+            z-index: 10;
         }
 
         td {
-            padding: 12px 15px;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
+            padding: 18px 20px;
+            border-bottom: 1px solid rgba(255,255,255,0.03);
+            color: #cbd5e1;
         }
 
-        tr:hover {
-            background: rgba(255, 255, 255, 0.03);
+        tr:hover td {
+            background: rgba(168, 85, 247, 0.1);
+            color: #ffffff;
         }
 
-        /* Form Styles */
+        /* Modern Badges (Lencana) */
+        .badge {
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 1rem;
+            font-weight: 600;
+            display: inline-block;
+            text-align: center;
+        }
+        .badge-ya {
+            background: rgba(16, 185, 129, 0.15);
+            color: #34d399;
+            border: 1px solid rgba(52, 211, 153, 0.3);
+        }
+        .badge-tidak {
+            background: rgba(239, 68, 68, 0.15);
+            color: #f87171;
+            border: 1px solid rgba(248, 113, 113, 0.3);
+        }
+
+        /* ================= Form & Input ================= */
         .form-row {
             display: flex;
-            gap: 15px;
-            margin-bottom: 25px;
+            gap: 20px;
+            margin-bottom: 30px;
         }
 
         .form-group {
@@ -132,130 +198,205 @@
         }
 
         label {
-            margin-bottom: 8px;
-            color: #cbd5e1;
+            margin-bottom: 12px;
+            color: #e2e8f0;
             font-weight: 600;
-            font-size: 0.95rem;
+            font-size: 1.2rem; /* Label diperbesar */
         }
 
         select {
-            background: rgba(15, 10, 25, 0.7);
-            border: 1px solid rgba(168, 85, 247, 0.3);
-            border-radius: 10px;
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 14px;
             color: white;
-            padding: 12px 15px;
+            padding: 18px 20px;
             font-family: 'Outfit', sans-serif;
-            font-size: 1rem;
+            font-size: 1.25rem; /* Teks Select diperbesar */
             outline: none;
+            cursor: pointer;
             transition: all 0.3s ease;
             appearance: none;
-            cursor: pointer;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.2);
         }
 
-        select:hover, select:focus {
-            border-color: var(--secondary-glow);
-            box-shadow: 0 0 15px rgba(236, 72, 153, 0.2);
+        select:focus, select:hover {
+            border-color: var(--primary-glow);
+            box-shadow: 0 0 20px rgba(168, 85, 247, 0.3), inset 0 2px 4px rgba(0,0,0,0.2);
         }
 
         select option {
-            background: var(--bg-dark);
+            background: #1e1b4b;
             color: white;
+            font-size: 1.1rem;
         }
 
+        /* ================= Tombol Ajaib ================= */
         button {
-            background: linear-gradient(90deg, var(--primary-glow) 0%, var(--secondary-glow) 100%);
+            background: linear-gradient(135deg, var(--primary-glow) 0%, var(--secondary-glow) 100%);
             color: white;
             border: none;
-            border-radius: 12px;
+            border-radius: 16px;
             font-weight: 800;
-            font-size: 1.1rem;
-            padding: 15px;
+            font-size: 1.4rem; /* Tombol diperbesar */
+            padding: 20px;
             cursor: pointer;
             width: 100%;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            box-shadow: 0 4px 15px rgba(236, 72, 153, 0.3);
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            box-shadow: 0 10px 20px rgba(236, 72, 153, 0.3), inset 0 -3px 0 rgba(0,0,0,0.1);
             font-family: 'Outfit', sans-serif;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        button::after {
+            content: '';
+            position: absolute;
+            top: -50%; left: -50%;
+            width: 200%; height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 60%);
+            opacity: 0;
+            transform: scale(0.5);
+            transition: opacity 0.3s, transform 0.3s;
         }
 
         button:hover {
-            transform: translateY(-3px) scale(1.02);
-            box-shadow: 0 8px 25px rgba(236, 72, 153, 0.6);
+            transform: translateY(-4px);
+            box-shadow: 0 15px 30px rgba(236, 72, 153, 0.5), inset 0 -3px 0 rgba(0,0,0,0.1);
+        }
+
+        button:hover::after {
+            opacity: 1;
+            transform: scale(1);
         }
 
         button:active {
-            transform: scale(0.98);
+            transform: scale(0.98) translateY(2px);
+            box-shadow: 0 5px 15px rgba(236, 72, 153, 0.3);
         }
 
-        /* Result Console */
-        .console {
-            background: rgba(10, 5, 20, 0.8);
-            border: 1px solid rgba(139, 92, 246, 0.3);
-            border-radius: 12px;
-            padding: 20px;
-            font-family: 'Consolas', monospace;
-            font-size: 0.95rem;
-            color: #a78bfa;
-            box-shadow: inset 0 2px 15px rgba(0,0,0,0.5);
-            margin-top: 25px;
-            white-space: pre-wrap;
-            min-height: 200px;
-        }
-
-        .hasil-box {
-            margin-top: 20px;
-            padding: 20px;
-            border-radius: 12px;
-            text-align: center;
-            font-size: 1.8rem;
-            font-weight: 800;
-            animation: fadeIn 0.5s ease-in;
+        /* ================= UI Visualisasi Hasil ================= */
+        .results-area {
+            margin-top: 40px;
             display: none;
+            animation: fadeIn 0.6s ease-out forwards;
         }
 
-        .hasil-ya {
-            background: linear-gradient(90deg, #10b981 0%, #059669 100%);
-            box-shadow: 0 4px 20px rgba(16, 185, 129, 0.4);
-            display: block;
+        .stat-group {
+            margin-bottom: 25px;
+            background: rgba(0,0,0,0.2);
+            padding: 20px;
+            border-radius: 15px;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+        
+        .stat-title {
+            font-size: 1.2rem;
+            color: #e2e8f0;
+            margin-bottom: 15px;
+            font-weight: 600;
         }
 
-        .hasil-tidak {
-            background: linear-gradient(90deg, #ef4444 0%, #dc2626 100%);
-            box-shadow: 0 4px 20px rgba(239, 68, 68, 0.4);
-            display: block;
+        .bar-container {
+            margin-bottom: 15px;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+        .bar-label {
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+            color: #cbd5e1;
+        }
+
+        .bar-track {
+            width: 100%;
+            height: 12px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .bar-fill {
+            height: 100%;
+            border-radius: 10px;
+            transition: width 1s cubic-bezier(0.25, 1, 0.5, 1);
+            width: 0%; /* Diisi via JS */
+        }
+
+        .fill-ya { background: linear-gradient(90deg, #10b981, #34d399); box-shadow: 0 0 10px rgba(16,185,129,0.5);}
+        .fill-tidak { background: linear-gradient(90deg, #ef4444, #f87171); box-shadow: 0 0 10px rgba(239,68,68,0.5);}
+
+        .final-result-card {
+            margin-top: 30px;
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            transform: scale(0.9);
+            opacity: 0;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .final-result-card.show {
+            transform: scale(1);
+            opacity: 1;
+        }
+
+        .final-ya {
+            background: linear-gradient(135deg, rgba(16,185,129,0.2), rgba(5,150,105,0.4));
+            border: 2px solid #34d399;
+            box-shadow: 0 10px 40px rgba(16,185,129,0.3), inset 0 0 30px rgba(16,185,129,0.2);
+        }
+        
+        .final-ya .result-text { color: #6ee7b7; text-shadow: 0 0 15px rgba(110,231,183,0.6); }
+
+        .final-tidak {
+            background: linear-gradient(135deg, rgba(239,68,68,0.2), rgba(220,38,38,0.4));
+            border: 2px solid #f87171;
+            box-shadow: 0 10px 40px rgba(239,68,68,0.3), inset 0 0 30px rgba(239,68,68,0.2);
+        }
+
+        .final-tidak .result-text { color: #fca5a5; text-shadow: 0 0 15px rgba(252,165,165,0.6); }
+
+        .result-label {
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 5px;
+            opacity: 0.9;
+        }
+
+        .result-text {
+            font-size: 3.5rem; /* SUPER BESAR */
+            font-weight: 800;
+            margin: 0;
+            line-height: 1.1;
         }
 
         /* Scrollbar styling */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: rgba(0,0,0,0.2); 
-        }
-        ::-webkit-scrollbar-thumb {
-            background: rgba(168, 85, 247, 0.5); 
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: rgba(236, 72, 153, 0.8); 
-        }
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: rgba(0,0,0,0.2); border-radius: 5px; }
+        ::-webkit-scrollbar-thumb { background: rgba(168, 85, 247, 0.5); border-radius: 5px; }
+        ::-webkit-scrollbar-thumb:hover { background: rgba(236, 72, 153, 0.8); }
+
     </style>
 </head>
 <body>
 
+    <!-- Dekorasi Background -->
+    <div class="orb-1"></div>
+    <div class="orb-2"></div>
+
     <div class="header">
         <h1>✨ NAIVE BAYES PREDICTOR</h1>
-        <div class="subtitle">Aplikasi Prediksi Pembelian Produk Berbasis Web Statis</div>
+        <div class="subtitle">Visualisasi Data Statistika - UI Interaktif Ultra-Premium</div>
     </div>
 
     <div class="container">
-        <!-- Panel Dataset -->
+        
+        <!-- ================= PANEL DATASET ================= -->
         <div class="panel">
-            <h2>📋 Dataset Pembelian Produk</h2>
+            <h2>📊 Dataset Pembelian Produk</h2>
             <div class="table-wrapper">
                 <table>
                     <thead>
@@ -274,17 +415,19 @@
             </div>
         </div>
 
-        <!-- Panel Form & Prediksi -->
+        <!-- ================= PANEL PREDIKSI ================= -->
         <div class="panel">
-            <h2>🎯 Form Prediksi Baru</h2>
-            <p style="color: #cbd5e1; font-size: 0.95rem; margin-bottom: 20px;">Pilih atribut kriteria di bawah ini untuk melihat hasil probabilitas Naive Bayes secara dinamis.</p>
+            <h2>🎯 Kalkulator Prediksi Baru</h2>
+            <p style="color: #cbd5e1; font-size: 1.15rem; margin-bottom: 25px;">
+                Sesuaikan kriteria di bawah ini untuk melihat pergerakan probabilitas Naive Bayes.
+            </p>
             
             <div class="form-row">
                 <div class="form-group">
                     <label for="inputUsia">Usia</label>
                     <select id="inputUsia">
                         <option value="Muda">Muda</option>
-                        <option value="ParuhBaya" selected>ParuhBaya</option>
+                        <option value="ParuhBaya" selected>Paruh Baya</option>
                         <option value="Tua">Tua</option>
                     </select>
                 </div>
@@ -305,16 +448,70 @@
                 </div>
             </div>
 
-            <button onclick="jalankanPrediksi()">Hitung Prediksi Sekarang 🚀</button>
+            <button onclick="jalankanPrediksi()">🚀 ANALISIS SEKARANG</button>
 
-            <h2 style="margin-top: 30px;">💡 Rincian Perhitungan</h2>
-            <div class="console" id="consoleOutput">Klik tombol hitung untuk melihat detail...</div>
-            <div id="hasilBox" class="hasil-box"></div>
+            <!-- AREA VISUALISASI HASIL -->
+            <div class="results-area" id="resultsArea">
+                
+                <h2 style="margin-top: 40px; font-size: 1.6rem;">🔬 Analisis Probabilitas</h2>
+                
+                <!-- Prior Bar -->
+                <div class="stat-group">
+                    <div class="stat-title">1. Prior Probability P(C)</div>
+                    
+                    <div class="bar-container">
+                        <div class="bar-label">
+                            <span>P(Membeli = Ya)</span>
+                            <span id="txt-prior-ya">0%</span>
+                        </div>
+                        <div class="bar-track"><div class="bar-fill fill-ya" id="bar-prior-ya"></div></div>
+                    </div>
+                    
+                    <div class="bar-container">
+                        <div class="bar-label">
+                            <span>P(Membeli = Tidak)</span>
+                            <span id="txt-prior-tdk">0%</span>
+                        </div>
+                        <div class="bar-track"><div class="bar-fill fill-tidak" id="bar-prior-tdk"></div></div>
+                    </div>
+                </div>
+
+                <!-- Posterior Bar (Final) -->
+                <div class="stat-group">
+                    <div class="stat-title">2. Posterior Probability P(C|X)</div>
+                    <p style="font-size: 1rem; color: #94a3b8; margin-top: -10px; margin-bottom: 15px;">
+                        (Hasil perkalian Prior × Likelihood Usia × Likelihood Penghasilan × Likelihood Status)
+                    </p>
+                    
+                    <div class="bar-container">
+                        <div class="bar-label">
+                            <span style="font-weight: 600; color: #6ee7b7;">Nilai Posterior (YA)</span>
+                            <span id="txt-post-ya" style="font-family: Consolas; font-weight: bold;">0.00000</span>
+                        </div>
+                        <div class="bar-track" style="height: 18px;"><div class="bar-fill fill-ya" id="bar-post-ya"></div></div>
+                    </div>
+                    
+                    <div class="bar-container">
+                        <div class="bar-label">
+                            <span style="font-weight: 600; color: #fca5a5;">Nilai Posterior (TIDAK)</span>
+                            <span id="txt-post-tdk" style="font-family: Consolas; font-weight: bold;">0.00000</span>
+                        </div>
+                        <div class="bar-track" style="height: 18px;"><div class="bar-fill fill-tidak" id="bar-post-tdk"></div></div>
+                    </div>
+                </div>
+
+                <!-- Kartu Kesimpulan -->
+                <div id="finalCard" class="final-result-card">
+                    <div class="result-label" style="color: white;">Keputusan Algoritma:</div>
+                    <p class="result-text" id="finalVerdict">YA</p>
+                </div>
+
+            </div>
         </div>
     </div>
 
     <script>
-        // 1. Dataset
+        // Data Latih (20 Baris)
         const dataset = [
             {No: 1, Usia: "Muda", Penghasilan: "Tinggi", Status: "Single", Membeli: "Ya"},
             {No: 2, Usia: "Tua", Penghasilan: "Rendah", Status: "Menikah", Membeli: "Tidak"},
@@ -338,123 +535,116 @@
             {No: 20, Usia: "Tua", Penghasilan: "Rendah", Status: "Menikah", Membeli: "Tidak"}
         ];
 
-        // 2. Render Table
+        // Render Tabel
         function renderTable() {
             const tbody = document.getElementById("table-body");
             dataset.forEach(row => {
                 const tr = document.createElement("tr");
+                
+                // Styling pill badge untuk kolom "Membeli"
+                let badgeHTML = "";
+                if (row.Membeli === "Ya") {
+                    badgeHTML = `<span class="badge badge-ya">YA</span>`;
+                } else {
+                    badgeHTML = `<span class="badge badge-tidak">TIDAK</span>`;
+                }
+
+                // Ganti value ParuhBaya di tabel biar lebih rapi teksnya
+                let displayUsia = row.Usia === "ParuhBaya" ? "Paruh Baya" : row.Usia;
+
                 tr.innerHTML = `
-                    <td>${row.No}</td>
-                    <td>${row.Usia}</td>
+                    <td><b>${row.No}</b></td>
+                    <td>${displayUsia}</td>
                     <td>${row.Penghasilan}</td>
                     <td>${row.Status}</td>
-                    <td>${row.Membeli}</td>
+                    <td>${badgeHTML}</td>
                 `;
                 tbody.appendChild(tr);
             });
         }
 
-        // 3. Logika Naive Bayes
-        function hitungNaiveBayes(usia, penghasilan, status) {
-            const totalData = dataset.length;
-            let jmlYa = 0;
-            let jmlTidak = 0;
-
-            dataset.forEach(d => {
-                if (d.Membeli === "Ya") jmlYa++;
-                if (d.Membeli === "Tidak") jmlTidak++;
-            });
-
-            // Prior
-            const priorYa = jmlYa / totalData;
-            const priorTidak = jmlTidak / totalData;
-
-            // Likelihood function helper
-            function countLikelihood(attr, val, label) {
-                return dataset.filter(d => d[attr] === val && d.Membeli === label).length;
-            }
-
-            // Likelihood YA
-            const cntUsiaYa = countLikelihood("Usia", usia, "Ya");
-            const cntPengYa = countLikelihood("Penghasilan", penghasilan, "Ya");
-            const cntStatYa = countLikelihood("Status", status, "Ya");
-
-            const lkUsiaYa = cntUsiaYa / jmlYa;
-            const lkPengYa = cntPengYa / jmlYa;
-            const lkStatYa = cntStatYa / jmlYa;
-
-            // Likelihood TIDAK
-            const cntUsiaTdk = countLikelihood("Usia", usia, "Tidak");
-            const cntPengTdk = countLikelihood("Penghasilan", penghasilan, "Tidak");
-            const cntStatTdk = countLikelihood("Status", status, "Tidak");
-
-            const lkUsiaTdk = cntUsiaTdk / jmlTidak;
-            const lkPengTdk = cntPengTdk / jmlTidak;
-            const lkStatTdk = cntStatTdk / jmlTidak;
-
-            // Posterior
-            const posteriorYa = priorYa * lkUsiaYa * lkPengYa * lkStatYa;
-            const posteriorTidak = priorTidak * lkUsiaTdk * lkPengTdk * lkStatTdk;
-
-            const prediksi = posteriorYa > posteriorTidak ? "Ya" : "Tidak";
-
-            return {
-                jmlYa, jmlTidak, totalData,
-                priorYa, priorTidak,
-                cntUsiaYa, cntPengYa, cntStatYa,
-                lkUsiaYa, lkPengYa, lkStatYa,
-                cntUsiaTdk, cntPengTdk, cntStatTdk,
-                lkUsiaTdk, lkPengTdk, lkStatTdk,
-                posteriorYa, posteriorTidak,
-                prediksi
-            };
-        }
-
-        // 4. Eksekusi
+        // Jalankan Prediksi & Animasikan UI
         function jalankanPrediksi() {
-            const usia = document.getElementById("inputUsia").value;
+            // Tampilkan area jika belum tampil
+            const area = document.getElementById("resultsArea");
+            area.style.display = "block";
+
+            // Ambil Input
+            // Note: value di HTML diubah jadi ParuhBaya tanpa spasi agar cocok dengan dataset
+            const usia = document.getElementById("inputUsia").value; 
             const penghasilan = document.getElementById("inputPenghasilan").value;
             const status = document.getElementById("inputStatus").value;
 
-            const h = hitungNaiveBayes(usia, penghasilan, status);
+            // Hitung Naive Bayes Dasar
+            const totalData = dataset.length;
+            const jmlYa = dataset.filter(d => d.Membeli === "Ya").length;
+            const jmlTidak = dataset.filter(d => d.Membeli === "Tidak").length;
 
-            // Format Teks Konsol
-            const textOutput = `=== 1. PROBABILITAS PRIOR ===
-P(Membeli = Ya)    = ${h.jmlYa}/${h.totalData} = ${h.priorYa.toFixed(2)}
-P(Membeli = Tidak) = ${h.jmlTidak}/${h.totalData} = ${h.priorTidak.toFixed(2)}
+            const priorYa = jmlYa / totalData;
+            const priorTidak = jmlTidak / totalData;
 
-=== 2. LIKELIHOOD ===
-[Kelas: Ya]
-P(Usia=${usia} | Ya)        = ${h.cntUsiaYa}/${h.jmlYa} = ${h.lkUsiaYa.toFixed(3)}
-P(Penghasilan=${penghasilan} | Ya) = ${h.cntPengYa}/${h.jmlYa} = ${h.lkPengYa.toFixed(3)}
-P(Status=${status} | Ya)      = ${h.cntStatYa}/${h.jmlYa} = ${h.lkStatYa.toFixed(3)}
-
-[Kelas: Tidak]
-P(Usia=${usia} | Tidak)        = ${h.cntUsiaTdk}/${h.jmlTidak} = ${h.lkUsiaTdk.toFixed(3)}
-P(Penghasilan=${penghasilan} | Tidak) = ${h.cntPengTdk}/${h.jmlTidak} = ${h.lkPengTdk.toFixed(3)}
-P(Status=${status} | Tidak)      = ${h.cntStatTdk}/${h.jmlTidak} = ${h.lkStatTdk.toFixed(3)}
-
-=== 3. POSTERIOR PROBABILITY ===
-P(Ya | X)    ∝ ${h.priorYa.toFixed(2)} * ${h.lkUsiaYa.toFixed(3)} * ${h.lkPengYa.toFixed(3)} * ${h.lkStatYa.toFixed(3)} = ${h.posteriorYa.toFixed(5)}
-P(Tidak | X) ∝ ${h.priorTidak.toFixed(2)} * ${h.lkUsiaTdk.toFixed(3)} * ${h.lkPengTdk.toFixed(3)} * ${h.lkStatTdk.toFixed(3)} = ${h.posteriorTidak.toFixed(5)}`;
-
-            document.getElementById("consoleOutput").innerText = textOutput;
-
-            // Update Box Hasil
-            const hasilBox = document.getElementById("hasilBox");
-            if (h.prediksi === "Ya") {
-                hasilBox.className = "hasil-box hasil-ya";
-                hasilBox.innerHTML = `✅ PREDIKSI: ${h.prediksi.toUpperCase()}`;
-            } else {
-                hasilBox.className = "hasil-box hasil-tidak";
-                hasilBox.innerHTML = `❌ PREDIKSI: ${h.prediksi.toUpperCase()}`;
+            function countL(attr, val, label) {
+                return dataset.filter(d => d[attr] === val && d.Membeli === label).length;
             }
+
+            const lkUsiaYa = countL("Usia", usia, "Ya") / jmlYa;
+            const lkPengYa = countL("Penghasilan", penghasilan, "Ya") / jmlYa;
+            const lkStatYa = countL("Status", status, "Ya") / jmlYa;
+
+            const lkUsiaTdk = countL("Usia", usia, "Tidak") / jmlTidak;
+            const lkPengTdk = countL("Penghasilan", penghasilan, "Tidak") / jmlTidak;
+            const lkStatTdk = countL("Status", status, "Tidak") / jmlTidak;
+
+            const posteriorYa = priorYa * lkUsiaYa * lkPengYa * lkStatYa;
+            const posteriorTidak = priorTidak * lkUsiaTdk * lkPengTdk * lkStatTdk;
+
+            // Update UI: Prior
+            document.getElementById("txt-prior-ya").innerText = `${jmlYa}/${totalData} = ${(priorYa*100).toFixed(0)}%`;
+            document.getElementById("txt-prior-tdk").innerText = `${jmlTidak}/${totalData} = ${(priorTidak*100).toFixed(0)}%`;
+            
+            // Animasi lebar bar
+            setTimeout(() => {
+                document.getElementById("bar-prior-ya").style.width = `${priorYa*100}%`;
+                document.getElementById("bar-prior-tdk").style.width = `${priorTidak*100}%`;
+            }, 100);
+
+            // Update UI: Posterior
+            document.getElementById("txt-post-ya").innerText = posteriorYa.toFixed(5);
+            document.getElementById("txt-post-tdk").innerText = posteriorTidak.toFixed(5);
+
+            // Kalkulasi lebar visual bar untuk Posterior (Relatif terhadap yang terbesar)
+            const maxPost = Math.max(posteriorYa, posteriorTidak);
+            const wYa = (posteriorYa / (posteriorYa + posteriorTidak)) * 100;
+            const wTdk = (posteriorTidak / (posteriorYa + posteriorTidak)) * 100;
+
+            setTimeout(() => {
+                // Beri lebar minimal 2% agar bar warna tetap sedikit terlihat kalau 0
+                document.getElementById("bar-post-ya").style.width = `${Math.max(wYa, 2)}%`;
+                document.getElementById("bar-post-tdk").style.width = `${Math.max(wTdk, 2)}%`;
+            }, 300);
+
+            // Tampilkan Kartu Final Verdict (Pop-up Animation)
+            const finalCard = document.getElementById("finalCard");
+            const verdictText = document.getElementById("finalVerdict");
+
+            // Reset kelas untuk re-trigger animasi
+            finalCard.className = "final-result-card";
+            
+            setTimeout(() => {
+                if (posteriorYa > posteriorTidak) {
+                    finalCard.className = "final-result-card final-ya show";
+                    verdictText.innerText = "PREDIKSI: YA";
+                } else {
+                    finalCard.className = "final-result-card final-tidak show";
+                    verdictText.innerText = "PREDIKSI: TIDAK";
+                }
+            }, 600); // Muncul setelah bar selesai terisi
         }
 
         // Init
         window.onload = () => {
             renderTable();
-            jalankanPrediksi(); // run once on load
+            // Optional: jalankanPrediksi(); // Jika ingin otomatis terisi di awal
         };
     </script>
 </body>
