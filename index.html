@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -34,45 +35,82 @@
         }
 
         @keyframes gradientBG {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
         }
 
         /* Dekorasi Bola Cahaya (Orbs) di Latar Belakang */
-        .orb-1, .orb-2 {
+        .orb-1,
+        .orb-2 {
             position: fixed;
             border-radius: 50%;
             filter: blur(100px);
             z-index: -1;
         }
+
         .orb-1 {
-            width: 400px; height: 400px;
+            width: 400px;
+            height: 400px;
             background: rgba(168, 85, 247, 0.4);
-            top: -100px; left: -100px;
+            top: -100px;
+            left: -100px;
             animation: floatOrb 10s ease-in-out infinite alternate;
         }
+
         .orb-2 {
-            width: 500px; height: 500px;
+            width: 500px;
+            height: 500px;
             background: rgba(236, 72, 153, 0.3);
-            bottom: -200px; right: -100px;
+            bottom: -200px;
+            right: -100px;
             animation: floatOrb 12s ease-in-out infinite alternate-reverse;
         }
 
         @keyframes floatOrb {
-            0% { transform: translateY(0) scale(1); }
-            100% { transform: translateY(50px) scale(1.1); }
+            0% {
+                transform: translateY(0) scale(1);
+            }
+
+            100% {
+                transform: translateY(50px) scale(1.1);
+            }
         }
 
         /* ================= Typography & Layout ================= */
+        @keyframes slideInDown {
+            from { opacity: 0; transform: translateY(-50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideInUp {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInScale {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
         .header {
             text-align: center;
             margin: 60px 0 40px 0;
+            animation: slideInDown 0.8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
         }
 
         h1 {
             font-weight: 800;
-            font-size: 4rem; /* Diperbesar */
+            font-size: 4rem;
+            /* Diperbesar */
             margin: 0;
             background: -webkit-linear-gradient(45deg, #ffffff, #a855f7, #ec4899);
             -webkit-background-clip: text;
@@ -83,7 +121,8 @@
 
         .subtitle {
             color: var(--text-muted);
-            font-size: 1.5rem; /* Diperbesar */
+            font-size: 1.5rem;
+            /* Diperbesar */
             margin-top: 10px;
             font-weight: 300;
         }
@@ -92,9 +131,12 @@
             display: flex;
             flex-wrap: wrap;
             width: 95%;
-            max-width: 1500px; /* Lebar maksimal diperbesar */
+            max-width: 1500px;
+            /* Lebar maksimal diperbesar */
             gap: 40px;
             margin-bottom: 80px;
+            opacity: 0;
+            animation: slideInUp 1s cubic-bezier(0.25, 1, 0.5, 1) 0.3s forwards;
         }
 
         /* Glassmorphism Panel */
@@ -105,19 +147,21 @@
             border-radius: 25px;
             border: 1px solid var(--glass-border);
             padding: 40px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255,255,255,0.1);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1);
             flex: 1;
-            min-width: 500px; /* Panel lebih lebar */
+            min-width: 500px;
+            /* Panel lebih lebar */
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
         .panel:hover {
             transform: translateY(-5px);
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255,255,255,0.15);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.15);
         }
 
         h2 {
-            font-size: 2rem; /* Diperbesar */
+            font-size: 2rem;
+            /* Diperbesar */
             margin-top: 0;
             margin-bottom: 25px;
             color: #ffffff;
@@ -133,17 +177,18 @@
             overflow-y: auto;
             border-radius: 15px;
             border: 1px solid var(--glass-border);
-            background: rgba(0,0,0,0.2);
+            background: rgba(0, 0, 0, 0.2);
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
-            font-size: 1.15rem; /* Tabel diperbesar */
+            font-size: 1.15rem;
+            /* Tabel diperbesar */
         }
 
         th {
-            background: rgba(255,255,255,0.05);
+            background: rgba(255, 255, 255, 0.05);
             color: #e2e8f0;
             padding: 20px;
             font-weight: 600;
@@ -155,7 +200,7 @@
 
         td {
             padding: 18px 20px;
-            border-bottom: 1px solid rgba(255,255,255,0.03);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
             color: #cbd5e1;
         }
 
@@ -173,11 +218,13 @@
             display: inline-block;
             text-align: center;
         }
+
         .badge-ya {
             background: rgba(16, 185, 129, 0.15);
             color: #34d399;
             border: 1px solid rgba(52, 211, 153, 0.3);
         }
+
         .badge-tidak {
             background: rgba(239, 68, 68, 0.15);
             color: #f87171;
@@ -201,27 +248,30 @@
             margin-bottom: 12px;
             color: #e2e8f0;
             font-weight: 600;
-            font-size: 1.2rem; /* Label diperbesar */
+            font-size: 1.2rem;
+            /* Label diperbesar */
         }
 
         select {
             background: rgba(0, 0, 0, 0.4);
-            border: 1px solid rgba(255,255,255,0.1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 14px;
             color: white;
             padding: 18px 20px;
             font-family: 'Outfit', sans-serif;
-            font-size: 1.25rem; /* Teks Select diperbesar */
+            font-size: 1.25rem;
+            /* Teks Select diperbesar */
             outline: none;
             cursor: pointer;
             transition: all 0.3s ease;
             appearance: none;
-            box-shadow: inset 0 2px 4px rgba(0,0,0,0.2);
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
         }
 
-        select:focus, select:hover {
+        select:focus,
+        select:hover {
             border-color: var(--primary-glow);
-            box-shadow: 0 0 20px rgba(168, 85, 247, 0.3), inset 0 2px 4px rgba(0,0,0,0.2);
+            box-shadow: 0 0 20px rgba(168, 85, 247, 0.3), inset 0 2px 4px rgba(0, 0, 0, 0.2);
         }
 
         select option {
@@ -237,12 +287,13 @@
             border: none;
             border-radius: 16px;
             font-weight: 800;
-            font-size: 1.4rem; /* Tombol diperbesar */
+            font-size: 1.4rem;
+            /* Tombol diperbesar */
             padding: 20px;
             cursor: pointer;
             width: 100%;
             transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-            box-shadow: 0 10px 20px rgba(236, 72, 153, 0.3), inset 0 -3px 0 rgba(0,0,0,0.1);
+            box-shadow: 0 10px 20px rgba(236, 72, 153, 0.3), inset 0 -3px 0 rgba(0, 0, 0, 0.1);
             font-family: 'Outfit', sans-serif;
             letter-spacing: 1px;
             position: relative;
@@ -252,9 +303,11 @@
         button::after {
             content: '';
             position: absolute;
-            top: -50%; left: -50%;
-            width: 200%; height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 60%);
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 60%);
             opacity: 0;
             transform: scale(0.5);
             transition: opacity 0.3s, transform 0.3s;
@@ -262,7 +315,7 @@
 
         button:hover {
             transform: translateY(-4px);
-            box-shadow: 0 15px 30px rgba(236, 72, 153, 0.5), inset 0 -3px 0 rgba(0,0,0,0.1);
+            box-shadow: 0 15px 30px rgba(236, 72, 153, 0.5), inset 0 -3px 0 rgba(0, 0, 0, 0.1);
         }
 
         button:hover::after {
@@ -284,12 +337,12 @@
 
         .stat-group {
             margin-bottom: 25px;
-            background: rgba(0,0,0,0.2);
+            background: rgba(0, 0, 0, 0.2);
             padding: 20px;
             border-radius: 15px;
-            border: 1px solid rgba(255,255,255,0.05);
+            border: 1px solid rgba(255, 255, 255, 0.05);
         }
-        
+
         .stat-title {
             font-size: 1.2rem;
             color: #e2e8f0;
@@ -312,7 +365,7 @@
         .bar-track {
             width: 100%;
             height: 12px;
-            background: rgba(255,255,255,0.1);
+            background: rgba(255, 255, 255, 0.1);
             border-radius: 10px;
             overflow: hidden;
         }
@@ -321,11 +374,19 @@
             height: 100%;
             border-radius: 10px;
             transition: width 1s cubic-bezier(0.25, 1, 0.5, 1);
-            width: 0%; /* Diisi via JS */
+            width: 0%;
+            /* Diisi via JS */
         }
 
-        .fill-ya { background: linear-gradient(90deg, #10b981, #34d399); box-shadow: 0 0 10px rgba(16,185,129,0.5);}
-        .fill-tidak { background: linear-gradient(90deg, #ef4444, #f87171); box-shadow: 0 0 10px rgba(239,68,68,0.5);}
+        .fill-ya {
+            background: linear-gradient(90deg, #10b981, #34d399);
+            box-shadow: 0 0 10px rgba(16, 185, 129, 0.5);
+        }
+
+        .fill-tidak {
+            background: linear-gradient(90deg, #ef4444, #f87171);
+            box-shadow: 0 0 10px rgba(239, 68, 68, 0.5);
+        }
 
         .final-result-card {
             margin-top: 30px;
@@ -343,20 +404,26 @@
         }
 
         .final-ya {
-            background: linear-gradient(135deg, rgba(16,185,129,0.2), rgba(5,150,105,0.4));
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.2), rgba(5, 150, 105, 0.4));
             border: 2px solid #34d399;
-            box-shadow: 0 10px 40px rgba(16,185,129,0.3), inset 0 0 30px rgba(16,185,129,0.2);
+            box-shadow: 0 10px 40px rgba(16, 185, 129, 0.3), inset 0 0 30px rgba(16, 185, 129, 0.2);
         }
-        
-        .final-ya .result-text { color: #6ee7b7; text-shadow: 0 0 15px rgba(110,231,183,0.6); }
+
+        .final-ya .result-text {
+            color: #6ee7b7;
+            text-shadow: 0 0 15px rgba(110, 231, 183, 0.6);
+        }
 
         .final-tidak {
-            background: linear-gradient(135deg, rgba(239,68,68,0.2), rgba(220,38,38,0.4));
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.2), rgba(220, 38, 38, 0.4));
             border: 2px solid #f87171;
-            box-shadow: 0 10px 40px rgba(239,68,68,0.3), inset 0 0 30px rgba(239,68,68,0.2);
+            box-shadow: 0 10px 40px rgba(239, 68, 68, 0.3), inset 0 0 30px rgba(239, 68, 68, 0.2);
         }
 
-        .final-tidak .result-text { color: #fca5a5; text-shadow: 0 0 15px rgba(252,165,165,0.6); }
+        .final-tidak .result-text {
+            color: #fca5a5;
+            text-shadow: 0 0 15px rgba(252, 165, 165, 0.6);
+        }
 
         .result-label {
             font-size: 1.2rem;
@@ -367,7 +434,8 @@
         }
 
         .result-text {
-            font-size: 3.5rem; /* SUPER BESAR */
+            font-size: 3.5rem;
+            /* SUPER BESAR */
             font-weight: 800;
             margin: 0;
             line-height: 1.1;
@@ -388,6 +456,7 @@
             top: 0;
             z-index: 100;
             box-sizing: border-box;
+            animation: slideInDown 0.6s cubic-bezier(0.25, 1, 0.5, 1) forwards;
         }
 
         .navbar-brand {
@@ -413,9 +482,12 @@
             padding: 30px;
             text-align: center;
             color: var(--text-muted);
-            margin-top: auto; /* Mendorong footer selalu ke paling bawah layar */
+            margin-top: auto;
+            /* Mendorong footer selalu ke paling bawah layar */
             font-size: 1.1rem;
             box-sizing: border-box;
+            opacity: 0;
+            animation: slideInUp 0.8s cubic-bezier(0.25, 1, 0.5, 1) 0.6s forwards;
         }
 
         .footer p {
@@ -430,18 +502,31 @@
         }
 
         /* Scrollbar styling */
-        ::-webkit-scrollbar { width: 10px; }
-        ::-webkit-scrollbar-track { background: rgba(0,0,0,0.2); border-radius: 5px; }
-        ::-webkit-scrollbar-thumb { background: rgba(168, 85, 247, 0.5); border-radius: 5px; }
-        ::-webkit-scrollbar-thumb:hover { background: rgba(236, 72, 153, 0.8); }
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
 
+        ::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: rgba(168, 85, 247, 0.5);
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(236, 72, 153, 0.8);
+        }
     </style>
 </head>
+
 <body>
 
     <!-- Header / Navbar Top -->
     <nav class="navbar">
-        <div class="navbar-brand">TIF-2025A</div>
+        <div class="navbar-brand">Teknik Informatika-2025A</div>
         <div class="navbar-menu">Project Statistika UNESA</div>
     </nav>
 
@@ -451,11 +536,12 @@
 
     <div class="header">
         <h1>✨ NAIVE BAYES PREDICTOR</h1>
-        <div class="subtitle">Project Mata Kuliah Statistika - S1 Teknik Informatika - 2025A - Fakultas Teknik - Universitas Negeri Surabaya</div>
+        <div class="subtitle">Project Mata Kuliah Statistika - S1 Teknik Informatika - 2025A - Fakultas Teknik -
+            Universitas Negeri Surabaya</div>
     </div>
 
     <div class="container">
-        
+
         <!-- ================= PANEL DATASET ================= -->
         <div class="panel">
             <h2>📊 Dataset Pembelian Produk</h2>
@@ -483,7 +569,7 @@
             <p style="color: #cbd5e1; font-size: 1.15rem; margin-bottom: 25px;">
                 Sesuaikan kriteria di bawah ini untuk melihat pergerakan probabilitas Naive Bayes.
             </p>
-            
+
             <div class="form-row">
                 <div class="form-group">
                     <label for="inputUsia">Usia</label>
@@ -514,27 +600,31 @@
 
             <!-- AREA VISUALISASI HASIL -->
             <div class="results-area" id="resultsArea">
-                
+
                 <h2 style="margin-top: 40px; font-size: 1.6rem;">🔬 Analisis Probabilitas</h2>
-                
+
                 <!-- Prior Bar -->
                 <div class="stat-group">
                     <div class="stat-title">1. Prior Probability P(C)</div>
-                    
+
                     <div class="bar-container">
                         <div class="bar-label">
                             <span>P(Membeli = Ya)</span>
                             <span id="txt-prior-ya">0%</span>
                         </div>
-                        <div class="bar-track"><div class="bar-fill fill-ya" id="bar-prior-ya"></div></div>
+                        <div class="bar-track">
+                            <div class="bar-fill fill-ya" id="bar-prior-ya"></div>
+                        </div>
                     </div>
-                    
+
                     <div class="bar-container">
                         <div class="bar-label">
                             <span>P(Membeli = Tidak)</span>
                             <span id="txt-prior-tdk">0%</span>
                         </div>
-                        <div class="bar-track"><div class="bar-fill fill-tidak" id="bar-prior-tdk"></div></div>
+                        <div class="bar-track">
+                            <div class="bar-fill fill-tidak" id="bar-prior-tdk"></div>
+                        </div>
                     </div>
                 </div>
 
@@ -544,21 +634,25 @@
                     <p style="font-size: 1rem; color: #94a3b8; margin-top: -10px; margin-bottom: 15px;">
                         (Hasil perkalian Prior × Likelihood Usia × Likelihood Penghasilan × Likelihood Status)
                     </p>
-                    
+
                     <div class="bar-container">
                         <div class="bar-label">
                             <span style="font-weight: 600; color: #6ee7b7;">Nilai Posterior (YA)</span>
                             <span id="txt-post-ya" style="font-family: Consolas; font-weight: bold;">0.00000</span>
                         </div>
-                        <div class="bar-track" style="height: 18px;"><div class="bar-fill fill-ya" id="bar-post-ya"></div></div>
+                        <div class="bar-track" style="height: 18px;">
+                            <div class="bar-fill fill-ya" id="bar-post-ya"></div>
+                        </div>
                     </div>
-                    
+
                     <div class="bar-container">
                         <div class="bar-label">
                             <span style="font-weight: 600; color: #fca5a5;">Nilai Posterior (TIDAK)</span>
                             <span id="txt-post-tdk" style="font-family: Consolas; font-weight: bold;">0.00000</span>
                         </div>
-                        <div class="bar-track" style="height: 18px;"><div class="bar-fill fill-tidak" id="bar-post-tdk"></div></div>
+                        <div class="bar-track" style="height: 18px;">
+                            <div class="bar-fill fill-tidak" id="bar-post-tdk"></div>
+                        </div>
                     </div>
                 </div>
 
@@ -581,26 +675,26 @@
     <script>
         // Data Latih (20 Baris)
         const dataset = [
-            {No: 1, Usia: "Muda", Penghasilan: "Tinggi", Status: "Single", Membeli: "Ya"},
-            {No: 2, Usia: "Tua", Penghasilan: "Rendah", Status: "Menikah", Membeli: "Tidak"},
-            {No: 3, Usia: "ParuhBaya", Penghasilan: "Sedang", Status: "Single", Membeli: "Ya"},
-            {No: 4, Usia: "Muda", Penghasilan: "Rendah", Status: "Single", Membeli: "Tidak"},
-            {No: 5, Usia: "Tua", Penghasilan: "Sedang", Status: "Menikah", Membeli: "Tidak"},
-            {No: 6, Usia: "ParuhBaya", Penghasilan: "Tinggi", Status: "Menikah", Membeli: "Ya"},
-            {No: 7, Usia: "Muda", Penghasilan: "Sedang", Status: "Single", Membeli: "Ya"},
-            {No: 8, Usia: "Tua", Penghasilan: "Tinggi", Status: "Menikah", Membeli: "Tidak"},
-            {No: 9, Usia: "ParuhBaya", Penghasilan: "Rendah", Status: "Single", Membeli: "Ya"},
-            {No: 10, Usia: "Muda", Penghasilan: "Tinggi", Status: "Menikah", Membeli: "Ya"},
-            {No: 11, Usia: "Tua", Penghasilan: "Rendah", Status: "Single", Membeli: "Tidak"},
-            {No: 12, Usia: "ParuhBaya", Penghasilan: "Sedang", Status: "Menikah", Membeli: "Ya"},
-            {No: 13, Usia: "Muda", Penghasilan: "Sedang", Status: "Single", Membeli: "Ya"},
-            {No: 14, Usia: "Tua", Penghasilan: "Tinggi", Status: "Menikah", Membeli: "Tidak"},
-            {No: 15, Usia: "ParuhBaya", Penghasilan: "Rendah", Status: "Single", Membeli: "Ya"},
-            {No: 16, Usia: "Muda", Penghasilan: "Rendah", Status: "Menikah", Membeli: "Tidak"},
-            {No: 17, Usia: "Tua", Penghasilan: "Sedang", Status: "Single", Membeli: "Tidak"},
-            {No: 18, Usia: "ParuhBaya", Penghasilan: "Tinggi", Status: "Menikah", Membeli: "Ya"},
-            {No: 19, Usia: "Muda", Penghasilan: "Sedang", Status: "Single", Membeli: "Ya"},
-            {No: 20, Usia: "Tua", Penghasilan: "Rendah", Status: "Menikah", Membeli: "Tidak"}
+            { No: 1, Usia: "Muda", Penghasilan: "Tinggi", Status: "Single", Membeli: "Ya" },
+            { No: 2, Usia: "Tua", Penghasilan: "Rendah", Status: "Menikah", Membeli: "Tidak" },
+            { No: 3, Usia: "ParuhBaya", Penghasilan: "Sedang", Status: "Single", Membeli: "Ya" },
+            { No: 4, Usia: "Muda", Penghasilan: "Rendah", Status: "Single", Membeli: "Tidak" },
+            { No: 5, Usia: "Tua", Penghasilan: "Sedang", Status: "Menikah", Membeli: "Tidak" },
+            { No: 6, Usia: "ParuhBaya", Penghasilan: "Tinggi", Status: "Menikah", Membeli: "Ya" },
+            { No: 7, Usia: "Muda", Penghasilan: "Sedang", Status: "Single", Membeli: "Ya" },
+            { No: 8, Usia: "Tua", Penghasilan: "Tinggi", Status: "Menikah", Membeli: "Tidak" },
+            { No: 9, Usia: "ParuhBaya", Penghasilan: "Rendah", Status: "Single", Membeli: "Ya" },
+            { No: 10, Usia: "Muda", Penghasilan: "Tinggi", Status: "Menikah", Membeli: "Ya" },
+            { No: 11, Usia: "Tua", Penghasilan: "Rendah", Status: "Single", Membeli: "Tidak" },
+            { No: 12, Usia: "ParuhBaya", Penghasilan: "Sedang", Status: "Menikah", Membeli: "Ya" },
+            { No: 13, Usia: "Muda", Penghasilan: "Sedang", Status: "Single", Membeli: "Ya" },
+            { No: 14, Usia: "Tua", Penghasilan: "Tinggi", Status: "Menikah", Membeli: "Tidak" },
+            { No: 15, Usia: "ParuhBaya", Penghasilan: "Rendah", Status: "Single", Membeli: "Ya" },
+            { No: 16, Usia: "Muda", Penghasilan: "Rendah", Status: "Menikah", Membeli: "Tidak" },
+            { No: 17, Usia: "Tua", Penghasilan: "Sedang", Status: "Single", Membeli: "Tidak" },
+            { No: 18, Usia: "ParuhBaya", Penghasilan: "Tinggi", Status: "Menikah", Membeli: "Ya" },
+            { No: 19, Usia: "Muda", Penghasilan: "Sedang", Status: "Single", Membeli: "Ya" },
+            { No: 20, Usia: "Tua", Penghasilan: "Rendah", Status: "Menikah", Membeli: "Tidak" }
         ];
 
         // Render Tabel
@@ -608,7 +702,7 @@
             const tbody = document.getElementById("table-body");
             dataset.forEach(row => {
                 const tr = document.createElement("tr");
-                
+
                 // Styling pill badge untuk kolom "Membeli"
                 let badgeHTML = "";
                 if (row.Membeli === "Ya") {
@@ -639,7 +733,7 @@
 
             // Ambil Input
             // Note: value di HTML diubah jadi ParuhBaya tanpa spasi agar cocok dengan dataset
-            const usia = document.getElementById("inputUsia").value; 
+            const usia = document.getElementById("inputUsia").value;
             const penghasilan = document.getElementById("inputPenghasilan").value;
             const status = document.getElementById("inputStatus").value;
 
@@ -667,13 +761,13 @@
             const posteriorTidak = priorTidak * lkUsiaTdk * lkPengTdk * lkStatTdk;
 
             // Update UI: Prior
-            document.getElementById("txt-prior-ya").innerText = `${jmlYa}/${totalData} = ${(priorYa*100).toFixed(0)}%`;
-            document.getElementById("txt-prior-tdk").innerText = `${jmlTidak}/${totalData} = ${(priorTidak*100).toFixed(0)}%`;
-            
+            document.getElementById("txt-prior-ya").innerText = `${jmlYa}/${totalData} = ${(priorYa * 100).toFixed(0)}%`;
+            document.getElementById("txt-prior-tdk").innerText = `${jmlTidak}/${totalData} = ${(priorTidak * 100).toFixed(0)}%`;
+
             // Animasi lebar bar
             setTimeout(() => {
-                document.getElementById("bar-prior-ya").style.width = `${priorYa*100}%`;
-                document.getElementById("bar-prior-tdk").style.width = `${priorTidak*100}%`;
+                document.getElementById("bar-prior-ya").style.width = `${priorYa * 100}%`;
+                document.getElementById("bar-prior-tdk").style.width = `${priorTidak * 100}%`;
             }, 100);
 
             // Update UI: Posterior
@@ -697,7 +791,7 @@
 
             // Reset kelas untuk re-trigger animasi
             finalCard.className = "final-result-card";
-            
+
             setTimeout(() => {
                 if (posteriorYa > posteriorTidak) {
                     finalCard.className = "final-result-card final-ya show";
@@ -716,4 +810,5 @@
         };
     </script>
 </body>
+
 </html>
