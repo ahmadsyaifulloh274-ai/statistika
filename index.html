@@ -680,6 +680,7 @@
                 <div id="finalCard" class="final-result-card">
                     <div class="result-label" style="color: white;">Keputusan Algoritma:</div>
                     <p class="result-text" id="finalVerdict">YA</p>
+                    <p id="finalReasonText" style="margin-top: 20px; font-size: 1.25rem; opacity: 0.95; line-height: 1.5;"></p>
                 </div>
 
             </div>
@@ -788,6 +789,20 @@
             const posteriorYa = priorYa * lkUsiaYa * lkPengYa * lkStatYa;
             const posteriorTidak = priorTidak * lkUsiaTdk * lkPengTdk * lkStatTdk;
 
+            let alasanText = "";
+            let keputusanText = "";
+            let prediksiAkhirText = "";
+
+            if (posteriorYa > posteriorTidak) {
+                alasanText = `Karena nilai Probabilitas Posterior untuk kelas 'Ya' (${posteriorYa.toFixed(5)}) lebih besar dari kelas 'Tidak' (${posteriorTidak.toFixed(5)}).`;
+                keputusanText = "pelanggan diprediksi AKAN MEMBELI produk.";
+                prediksiAkhirText = "YA";
+            } else {
+                alasanText = `Karena nilai Probabilitas Posterior untuk kelas 'Tidak' (${posteriorTidak.toFixed(5)}) lebih besar dari kelas 'Ya' (${posteriorYa.toFixed(5)}).`;
+                keputusanText = "pelanggan diprediksi TIDAK AKAN MEMBELI produk.";
+                prediksiAkhirText = "TIDAK";
+            }
+
             // Output Konsol Teks (Kesinambungan dengan PyQt5)
             const textOutput = `=== 1. PROBABILITAS PRIOR ===
 P(Membeli = Ya)    = ${jmlYa}/${totalData} = ${priorYa.toFixed(2)}
@@ -806,7 +821,15 @@ P(Status=${status} | Tidak)      = ${cntStatTdk}/${jmlTidak} = ${lkStatTdk.toFix
 
 === 3. POSTERIOR PROBABILITY ===
 P(Ya | X)    ∝ ${priorYa.toFixed(2)} * ${lkUsiaYa.toFixed(3)} * ${lkPengYa.toFixed(3)} * ${lkStatYa.toFixed(3)} = ${posteriorYa.toFixed(5)}
-P(Tidak | X) ∝ ${priorTidak.toFixed(2)} * ${lkUsiaTdk.toFixed(3)} * ${lkPengTdk.toFixed(3)} * ${lkStatTdk.toFixed(3)} = ${posteriorTidak.toFixed(5)}`;
+P(Tidak | X) ∝ ${priorTidak.toFixed(2)} * ${lkUsiaTdk.toFixed(3)} * ${lkPengTdk.toFixed(3)} * ${lkStatTdk.toFixed(3)} = ${posteriorTidak.toFixed(5)}
+
+=== 4. KESIMPULAN ===
+Alasan:
+${alasanText}
+
+Hasil Prediksi:
+Berdasarkan profil pelanggan (Usia: ${usia}, Penghasilan: ${penghasilan}, Status: ${status}), maka ${keputusanText}
+>>> ${prediksiAkhirText} <<<`;
 
             document.getElementById("consoleOutput").innerText = textOutput;
 
@@ -838,6 +861,7 @@ P(Tidak | X) ∝ ${priorTidak.toFixed(2)} * ${lkUsiaTdk.toFixed(3)} * ${lkPengTd
             // Tampilkan Kartu Final Verdict (Pop-up Animation)
             const finalCard = document.getElementById("finalCard");
             const verdictText = document.getElementById("finalVerdict");
+            const finalReasonEl = document.getElementById("finalReasonText");
 
             // Reset kelas untuk re-trigger animasi
             finalCard.className = "final-result-card";
@@ -846,9 +870,11 @@ P(Tidak | X) ∝ ${priorTidak.toFixed(2)} * ${lkUsiaTdk.toFixed(3)} * ${lkPengTd
                 if (posteriorYa > posteriorTidak) {
                     finalCard.className = "final-result-card final-ya show";
                     verdictText.innerText = "PREDIKSI: YA";
+                    finalReasonEl.innerHTML = `<b>Alasan:</b> Karena Probabilitas Posterior 'Ya' (${posteriorYa.toFixed(5)}) > 'Tidak' (${posteriorTidak.toFixed(5)}).<br>Pelanggan dengan profil <i>Usia ${usia}, Penghasilan ${penghasilan}, dan Status ${status}</i> diprediksi <b>AKAN MEMBELI</b> produk.`;
                 } else {
                     finalCard.className = "final-result-card final-tidak show";
                     verdictText.innerText = "PREDIKSI: TIDAK";
+                    finalReasonEl.innerHTML = `<b>Alasan:</b> Karena Probabilitas Posterior 'Tidak' (${posteriorTidak.toFixed(5)}) > 'Ya' (${posteriorYa.toFixed(5)}).<br>Pelanggan dengan profil <i>Usia ${usia}, Penghasilan ${penghasilan}, dan Status ${status}</i> diprediksi <b>TIDAK AKAN MEMBELI</b> produk.`;
                 }
             }, 600); // Muncul setelah bar selesai terisi
         }

@@ -205,7 +205,17 @@ class NaiveBayesApp(QMainWindow):
         output.append(f"P(Tidak | X) ∝ {h['prior']['tidak']:.2f} * {h['likelihood']['tidak']['usia']:.3f} * {h['likelihood']['tidak']['penghasilan']:.3f} * {h['likelihood']['tidak']['status']:.3f} = {h['posterior']['tidak']:.5f}\n")
         
         output.append("=== 4. KESIMPULAN ===")
-        output.append(f"Karena nilai posterior {h['prediksi']} lebih besar, maka pelanggan diprediksi:")
+        if h['posterior']['ya'] > h['posterior']['tidak']:
+            alasan = f"Karena nilai Probabilitas Posterior untuk kelas 'Ya' ({h['posterior']['ya']:.5f}) lebih besar dari kelas 'Tidak' ({h['posterior']['tidak']:.5f})."
+            keputusan = "pelanggan diprediksi AKAN MEMBELI produk."
+        else:
+            alasan = f"Karena nilai Probabilitas Posterior untuk kelas 'Tidak' ({h['posterior']['tidak']:.5f}) lebih besar dari kelas 'Ya' ({h['posterior']['ya']:.5f})."
+            keputusan = "pelanggan diprediksi TIDAK AKAN MEMBELI produk."
+            
+        output.append("Alasan:")
+        output.append(alasan)
+        output.append("\nHasil Prediksi:")
+        output.append(f"Berdasarkan profil pelanggan (Usia: {data_uji['Usia']}, Penghasilan: {data_uji['Penghasilan']}, Status: {data_uji['Status']}), maka {keputusan}")
         output.append(f">>> {h['prediksi'].upper()} <<<")
         
         self.text_result.setText("\n".join(output))
